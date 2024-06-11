@@ -1,0 +1,8 @@
+.truncate-by-words {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 5.6em;
+    /* This may need adjustment based on line-height */
+}

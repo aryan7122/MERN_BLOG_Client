@@ -1,0 +1,50 @@
+/* src/styles/customStyles.css */
+
+.custom-radio {
+    z-index: 10;
+    appearance: none;
+    width: 160px;
+    height: 33px;
+    border: 2px solid #d1d5db;
+    /* gray-300 */
+    /* border-radius: 50%; */
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    background-color: #f3f4f686;
+    /* gray-100 */
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.custom-radio:checked {
+    background-color: #83ef4458;
+    box-shadow: 0 0 0 2px rgba(90, 191, 1, 0.58);
+    border-color: #26ff00;
+}
+
+/*  */
+
+.custom-radio:focus {
+    box-shadow: 0 0 0 3px rgba(154, 248, 113, 0.5);
+    /* focus:ring-red-500 */
+}
+
+::-webkit-scrollbar {
+    width: 1px;
+    height: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
