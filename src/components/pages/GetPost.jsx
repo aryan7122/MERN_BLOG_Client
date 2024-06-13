@@ -46,9 +46,10 @@ const GetPost = () => {
         fetchPosts();
     }, []);
 
+    console.log('response', posts)
     const fetchPosts = async () => {
         try {
-            const response = await axios.get(process.env.SERVER ? `${process.env.SERVER}/api/posts` : "http://localhost:5000/api/posts");
+            const response = await axios.get(`${process.env.REACT_APP_SERVER}/api/posts`);
             setPosts(response.data);
         } catch (error) {
             console.error("Error fetching posts:", error);
@@ -72,7 +73,7 @@ const GetPost = () => {
 
     const handlePostClick = async (id) => {
         try {
-            const response = await axios.post(process.env.SERVER ? `${process.env.SERVER}/api/views/${id}` : `http://localhost:5000/api/views/${id}`);
+            const response = await axios.post(process.env.REACT_APP_SERVER ? `${process.env.REACT_APP_SERVER}/api/views/${id}` : `http://localhost:5000/api/views/${id}`);
             const updatedViews = response.data.views;
 
             setPosts(prevPosts => prevPosts.map(post =>
@@ -92,13 +93,13 @@ const GetPost = () => {
             return;
         }
         try {
-            const response = await axios.post(process.env.SERVER ? `${process.env.SERVER}/api/like/${id}` : `http://localhost:5000/api/like/${id}`, { userEmail }, {
+            const response = await axios.post(process.env.REACT_APP_SERVER ? `${process.env.REACT_APP_SERVER}/api/like/${id}` : `http://localhost:5000/api/like/${id}`, { userEmail }, {
                 headers: {
                     Authorization: `Bearer ${user.token}`
                 }
             });
             const updatedLikes = response.data.likes;
-            
+
             setPosts(prevPosts => prevPosts.map(post =>
                 post._id === id ? { ...post, like: updatedLikes } : post
             ));

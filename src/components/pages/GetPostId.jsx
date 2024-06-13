@@ -8,12 +8,11 @@ const GetPostId = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-
+        
         const fetchPost = async () => {
             try {
-                const response = await axios.get(process.env.SERVER ? `${process.env.SERVER}/api/posts/${id}` : `http://localhost:5000/api/posts/${id}`);
+                const response = await axios.get(process.env.REACT_APP_SERVER ? `${process.env.REACT_APP_SERVER}/api/posts/${id}` : `http://localhost:5000/api/posts/${id}`);
                 setPost(response.data);
-                console.log('response.data', response.data)
             } catch (error) {
                 console.error("Error fetching post:", error);
                 setError("Post not found or there was an error fetching the post.");

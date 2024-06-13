@@ -13,7 +13,8 @@ const BlogEditor = () => {
 
     const handleSave = async () => {
         try {
-            const response = await axios.post("http://localhost:5000/api/posts", {
+
+            const response = await axios.post(`${process.env.REACT_APP_SERVER}/api/posts`, {
                 title,
                 url,
                 description,
