@@ -8,10 +8,10 @@ const GetPostId = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        
+
         const fetchPost = async () => {
             try {
-                const response = await axios.get(process.env.SERVER ? `${process.env.SERVER}/api/posts` : "http://localhost:5000/api/posts");
+                const response = await axios.g(process.env.SERVER ? `${process.env.SERVER}/api/posts/${id}` : `http://localhost:5000/api/posts/${id}`);
                 setPost(response.data);
             } catch (error) {
                 console.error("Error fetching post:", error);
@@ -45,7 +45,7 @@ const GetPostId = () => {
     }
 
     return (
-        <div className=' p-10'>
+        <div className='border p-10'>
             <br />
             <div>
                 <h3 className='text-3xl font-bold p-2'>{post.title}</h3>
@@ -54,7 +54,7 @@ const GetPostId = () => {
                     <h4 className='text-gray-900'>{formatDate(post.createdAt)}</h4>
                 </div>
             </div>
-            <div className=' m-3 p-2' dangerouslySetInnerHTML={{ __html: post.content }} />
+            <div className='border m-3 p-2' dangerouslySetInnerHTML={{ __html: post.content }} />
             <hr />
         </div>
     );
