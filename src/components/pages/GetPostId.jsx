@@ -45,7 +45,7 @@ const GetPostId = () => {
     }
 
     return (
-        <div className='border p-10'>
+        <div className=' p-10'>
             <br />
             <div>
                 <h3 className='text-3xl font-bold p-2'>{post.title}</h3>
