@@ -1,8 +1,8 @@
 // src/services/api.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/users' || "https://mern-blog-server-bjul.onrender.com/"// https://mern-blog-server-bjul.onrender.com/';
-
+const API_URL = process.env.SERVER ? `${process.env.SERVER}/api/users` : 'http://localhost:5000/api/users'
+console.log('API_URL', API_URL)
 const register = async (name, email, password, role) => {
     const response = await axios.post(`${API_URL}/register`, { name, email, password, role });
     return response.data;

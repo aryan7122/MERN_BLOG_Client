@@ -19,7 +19,7 @@ const SelfDevelopment = () => {
 
     const fetchPosts = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/posts");
+            const response = await axios.get(process.env.SERVER ? `${process.env.SERVER}/api/posts` : "http://localhost:5000/api/posts");
             setPosts(response.data);
         } catch (error) {
             console.error("Error fetching posts:", error);
@@ -43,7 +43,7 @@ const SelfDevelopment = () => {
 
     const handlePostClick = async (id) => {
         try {
-            const response = await axios.post(`http://localhost:5000/api/views/${id}`);
+            const response = await axios.post(process.env.SERVER ? `${process.env.SERVER}/api/views/${id}` : `http://localhost:5000/api/views/${id}`);
             const updatedViews = response.data.views;
 
             setPosts(prevPosts => prevPosts.map(post =>
@@ -63,7 +63,7 @@ const SelfDevelopment = () => {
             return;
         }
         try {
-            const response = await axios.post(`http://localhost:5000/api/like/${id}`, { userEmail }, {
+            const response = await axios.post(process.env.SERVER ? `${process.env.SERVER}/api/like/${id}` : `http://localhost:5000/api/like/${id}`, { userEmail }, {
                 headers: {
                     Authorization: `Bearer ${user.token}`
                 }

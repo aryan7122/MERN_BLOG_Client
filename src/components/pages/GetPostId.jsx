@@ -11,7 +11,7 @@ const GetPostId = () => {
         
         const fetchPost = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/posts/${id}`);
+                const response = await axios.get(process.env.SERVER ? `${process.env.SERVER}/api/posts` : "http://localhost:5000/api/posts");
                 setPost(response.data);
             } catch (error) {
                 console.error("Error fetching post:", error);
