@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// Initial state for the slice
 const initialState = {
     isLoggedIn: false,
+    username: null,
     user: null,
     userRole: null,
-    // Add other relevant API-related state here
+    userEmail: null,
 };
 
 const apiSlice = createSlice({
@@ -15,11 +15,14 @@ const apiSlice = createSlice({
         login(state, action) {
             state.isLoggedIn = true;
             state.user = action.payload.user;
+            state.username = action.payload.username;
+            state.userEmail = action.payload.userEmail;
             state.userRole = action.payload.userRole;
             localStorage.setItem('user', JSON.stringify(action.payload));
         },
         logout(state) {
             state.isLoggedIn = false;
+            state.username = null;
             state.user = null;
             state.userRole = null;
             localStorage.removeItem('user');
@@ -27,12 +30,12 @@ const apiSlice = createSlice({
         setUserRole(state, action) {
             state.userRole = action.payload;
         },
-        // Add other reducers for API interactions
+        setPosts(state, action) { // Add a new reducer to update posts array
+            state.posts = action.payload;
+        },
+        
     },
 });
 
-// Export the actions created by the slice
-export const { login, logout, setUserRole } = apiSlice.actions;
-
-// Export the reducer to be used in the store
+export const { login, logout, setUserRole, setPosts } = apiSlice.actions;
 export default apiSlice.reducer;

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiSearch, FiUser, FiLogOut, FiEdit, FiMenu, FiLogIn } from 'react-icons/fi'; // Importing necessary icons
+import { FiSearch, FiUser, FiLogOut, FiEdit, FiMenu, FiLogIn, } from 'react-icons/fi'; // Importing necessary icons
+import { FaAddressCard } from "react-icons/fa";
+import { AiTwotoneDashboard, AiFillLike } from "react-icons/ai";
+
 
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/slices/apiSlice';
@@ -10,7 +13,7 @@ const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMenuNav, setIsMenuNav] = useState(false);
     const dispatch = useDispatch();
-    const { isLoggedIn, userRole } = useSelector((state) => state.api);
+    const { isLoggedIn, userRole, username } = useSelector((state) => state.api);
 
     const toggleSearch = () => {
         setIsSearchOpen(!isSearchOpen);
@@ -103,30 +106,65 @@ const Header = () => {
                         onClick={toggleMenu}
                     />
                     {isMenuOpen && (
-                        <div className='absolute mt-14   h-[94vh] text-slate-800 w-[230px] p-4 py-3 ml-[-170px]  font-medium top-0  bg-white' >
+                        <div className='absolute shadow-md mt-14 left-[-130px]  h-[94vh] text-slate-800 w-[230px] delay-200  p-4 py-3  font-medium top-0  bg-white' >
                             <ul className=''>
                                 {isLoggedIn ? (
                                     <>
-                                        <li className='text-2xl hover:text-gray-400 cursor-pointer  p-2 w-full' onClick={toggleMenu}>
-                                            {userRole === 'User' ? '' :
-                                                <Link to="/edit" className='flex gap-5 items-center'>
-                                                <FiEdit /> Create Post  </Link>}
+                                        <li className='text-3xl py-3  cursor-pointer  p-2 w-full'>
+                                            <span  className='flex gap-5  items-center w-fit border-l-4 '>
+                                                <span className='pl-2'>{username}</span></span>
                                         </li>
+                                        {userRole === 'Admin' || userRole === 'Author' ?
+                                            <li className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full' onClick={toggleMenu}>
+                                                <Link to="/edit" className='flex gap-5 active:gap-1 items-center'>
+                                                    <FiEdit /> Create Post  </Link>
+                                            </li>
+                                            :
+                                            ''
+                                        }
+                                        <li className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full' onClick={toggleMenu}>
+                                            <Link to="/like" className='flex gap-5 active:gap-1 items-center'>
+                                                <AiFillLike /> Like  </Link>
+                                        </li>
+                                        {userRole === 'Admin' ?
+                                            <li className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full' onClick={toggleMenu}>
+                                                <Link to="/dashboard" className='flex gap-5 active:gap-1 items-center'>
+                                                    <AiTwotoneDashboard /> Dashboard </Link>
+                                            </li>
+                                            :
+                                            ''
+                                        }
+                                        {userRole === 'Admin'  ?
+                                            <li className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full' onClick={toggleMenu}>
+                                                <Link to="/user" className='flex gap-5 active:gap-1 items-center'>
+                                                    <FiUser /> Users </Link>
+                                            </li>
+                                            :
+                                            ''
+                                        }
+                                        {userRole === 'Admin' ? 
+                                            <li className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full' onClick={toggleMenu}>
+                                                <Link to="/role" className='flex gap-5 active:gap-1 items-center'>
+                                                    <FaAddressCard /> Role </Link>
+                                            </li>
+                                            :
+                                           ''
+                                        }
                                         <li
-                                            className='text-2xl hover:text-gray-400 cursor-pointer  p-2 w-full'
+                                            className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full'
                                             onClick={handleLogout}>
-                                            <span className='flex gap-5 items-center'>
-                                            <FiLogOut /> Logout
+                                            <span className='flex gap-5 active:gap-1 items-center'>
+                                                <FiLogOut /> Logout
                                             </span>
                                         </li>
                                     </>
                                 ) : (
                                     <>
-                                            <li className='text-2xl hover:text-gray-400 cursor-pointer  p-2 w-full'
-                                                onClick={toggleMenu}>
-                                                <Link to="/login"
-                                                    className='flex gap-5 items-center '>
-                                                    <FiLogIn />Login</Link>
+                                        <li className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full'
+                                            onClick={toggleMenu}>
+                                            <Link to="/login"
+                                                className='flex gap-5 active:gap-1 items-center '>
+                                                <FiLogIn />Login</Link>
                                         </li>
                                         {/* <li className='text-xl hover:text-gray-400 cursor-pointer' onClick={toggleMenu}>
                                             <Link to="/register">Register</Link>
