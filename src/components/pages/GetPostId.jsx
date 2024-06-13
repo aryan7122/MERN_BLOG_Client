@@ -54,7 +54,7 @@ const GetPostId = () => {
                     <h4 className='text-gray-900'>{formatDate(post.createdAt)}</h4>
                 </div>
             </div>
-            <div className='border m-3 p-2' dangerouslySetInnerHTML={{ __html: post.content }} />
+            <div className=' m-3 p-2' dangerouslySetInnerHTML={{ __html: post.content }} />
             <hr />
         </div>
     );
