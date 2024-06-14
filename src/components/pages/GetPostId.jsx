@@ -22,6 +22,7 @@ const GetPostId = () => {
             setError("Post not found or there was an error fetching the post.");
         }
     };
+    fetchPosts()
 
 
 
@@ -72,7 +73,6 @@ const GetPostId = () => {
     }
 
     const post = posts[0]; // Since we are wrapping the post in an array
-    fetchPosts()
 
     return (
         <div className='p-2'>
