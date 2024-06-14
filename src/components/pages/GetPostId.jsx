@@ -78,7 +78,7 @@ const GetPostId = () => {
         <div className='p-2'>
             <br />
             <div>
-                <img src={post.url} alt="" className='w-full' />
+                <img src={post.url} alt="" className='w-full ' />
                 <div className="flex justify-between px-1 py-1">
                     <div>
                         <h4 className='text-gray-900'>Post: {formatDate(post.createdAt)}</h4>

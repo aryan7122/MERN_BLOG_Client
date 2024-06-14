@@ -87,7 +87,7 @@ const GetPost = () => {
     };
 
     const handleLikeClick = async (id) => {
-        console.log('userEmail', userEmail)
+        // console.log('userEmail', userEmail)
         if (!isLoggedIn()) {
             alert("You need to log in to like a post");
             return;
@@ -157,9 +157,9 @@ const GetPost = () => {
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Recent Post</h1>
                 <Slider ref={recentSliderRef} {...settings}>
                     {posts.map((post) => (
-                        <div key={post._id} className='p-5'>
+                        <div key={post._id} className='p-1'>
                             <div
-                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-5 flex flex-col transition-shadow duration-300">
+                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"
                                     onClick={() => handlePostClick(post._id)}
                                 >
@@ -169,14 +169,14 @@ const GetPost = () => {
                                         alt={post.title}
                                     />
                                 </div>
-                                <div className="p-5 flex flex-col justify-between flex-grow">
-                                    <h3 className='text-2xl font-bold p-2 line-clamp-2' title={post.title}>
+                                <div className="p-1 flex flex-col justify-between flex-grow">
+                                    <h3 className='text-2xl font-bold p-1 line-clamp-2' title={post.title}>
                                         {post.title}
                                     </h3>
-                                    <p className='text-xl line-clamp-3' title={post.description}>
+                                    <p className='text-xl line-clamp-4 md:line-clamp-6 sm:line-clamp-5 ' title={post.description}>
                                         {post.description}
                                     </p>
-                                    <div className="flex text-2xl justify-between p-2 mt-auto">
+                                    <div className="flex text-2xl justify-between p-1 pb-2  mt-auto">
                                         <span className='flex gap-1 items-center'><AiTwotoneEye />{post.views}</span>
                                         <span className='flex gap-1 items-center'>
                                             <span
@@ -187,8 +187,8 @@ const GetPost = () => {
                                                 {post.like}
                                             </span>
                                         </span>
-                                        <h4 className='text-gray-900'>{formatDate(post.createdAt)}</h4>
-                                        <button className="text-blue-500 hover:underline"
+                                        <h4 className='text-gray-900 text-[12px] sm:text-xl text-center'>{formatDate(post.createdAt)}</h4>
+                                        <button className="text-blue-500 hover:underline text-[12px] sm:text-xl text-center"
                                             onClick={() => handlePostClick(post._id)}
                                         >Read more...</button>
                                     </div>
@@ -197,15 +197,15 @@ const GetPost = () => {
                         </div>
                     ))}
                 </Slider>
-                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-4 ">
+                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-1 ">
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => recentSliderRef.current.slickPrev()}
                     >
                         <FaAngleLeft />
                     </button>
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => recentSliderRef.current.slickNext()}
                     >
                         <FaAngleRight />
@@ -217,9 +217,9 @@ const GetPost = () => {
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Motivation</h1>
                 <Slider ref={motivationSliderRef} {...settings}>
                     {motivationPosts.map((post) => (
-                        <div key={post._id} className='p-5'>
+                        <div key={post._id} className='p-1'>
                             <div
-                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-5 flex flex-col transition-shadow duration-300">
+                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"
                                     onClick={() => handlePostClick(post._id)}
                                 >
@@ -229,17 +229,16 @@ const GetPost = () => {
                                         alt={post.title}
                                     />
                                 </div>
-                                <div className="p-5 flex flex-col justify-between flex-grow">
-                                    <h3 className='text-2xl font-bold p-2 line-clamp-2' title={post.title}>
+                                <div className="p-1 flex flex-col justify-between flex-grow">
+                                    <h3 className='text-2xl font-bold p-1 line-clamp-2' title={post.title}>
                                         {post.title}
                                     </h3>
-                                    <p className='text-xl line-clamp-3' title={post.description}>
+                                    <p className='text-xl line-clamp-4 md:line-clamp-6 sm:line-clamp-5 ' title={post.description}>
                                         {post.description}
                                     </p>
-                                    <div className="flex text-2xl justify-between p-2 mt-auto">
+                                    <div className="flex text-2xl justify-between p-1 pb-2  mt-auto">
                                         <span className='flex gap-1 items-center'><AiTwotoneEye />{post.views}</span>
-                                        <span className='flex gap-1 items-center'
-                                        >
+                                        <span className='flex gap-1 items-center'>
                                             <span
                                                 className={`flex gap-1 items-center cursor-pointer ${post.likedByEmails.includes(userEmail) ? 'text-blue-500' : ''}`}
                                                 onClick={() => handleLikeClick(post._id)}
@@ -248,8 +247,8 @@ const GetPost = () => {
                                                 {post.like}
                                             </span>
                                         </span>
-                                        <h4 className='text-gray-900'>{formatDate(post.createdAt)}</h4>
-                                        <button className="text-blue-500 hover:underline"
+                                        <h4 className='text-gray-900 text-[12px] sm:text-xl text-center'>{formatDate(post.createdAt)}</h4>
+                                        <button className="text-blue-500 hover:underline text-[12px] sm:text-xl text-center"
                                             onClick={() => handlePostClick(post._id)}
                                         >Read more...</button>
                                     </div>
@@ -258,15 +257,15 @@ const GetPost = () => {
                         </div>
                     ))}
                 </Slider>
-                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-4 ">
+                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-1">
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => motivationSliderRef.current.slickPrev()}
                     >
                         <FaAngleLeft />
                     </button>
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => motivationSliderRef.current.slickNext()}
                     >
                         <FaAngleRight />
@@ -278,9 +277,9 @@ const GetPost = () => {
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Book Summary</h1>
                 <Slider ref={bookSummarySliderRef} {...settings}>
                     {BookSummaryPost.map((post) => (
-                        <div key={post._id} className='p-5'>
+                        <div key={post._id} className='p-1'>
                             <div
-                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-5 flex flex-col transition-shadow duration-300">
+                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"
                                     onClick={() => handlePostClick(post._id)}
                                 >
@@ -290,17 +289,16 @@ const GetPost = () => {
                                         alt={post.title}
                                     />
                                 </div>
-                                <div className="p-5 flex flex-col justify-between flex-grow">
-                                    <h3 className='text-2xl font-bold p-2 line-clamp-2' title={post.title}>
+                                <div className="p-1 flex flex-col justify-between flex-grow">
+                                    <h3 className='text-2xl font-bold p-1 line-clamp-2' title={post.title}>
                                         {post.title}
                                     </h3>
-                                    <p className='text-xl line-clamp-3' title={post.description}>
+                                    <p className='text-xl line-clamp-4 md:line-clamp-6 sm:line-clamp-5 ' title={post.description}>
                                         {post.description}
                                     </p>
-                                    <div className="flex text-2xl justify-between p-2 mt-auto">
+                                    <div className="flex text-2xl justify-between p-1 pb-2  mt-auto">
                                         <span className='flex gap-1 items-center'><AiTwotoneEye />{post.views}</span>
-                                        <span className='flex gap-1 items-center'
-                                        >
+                                        <span className='flex gap-1 items-center'>
                                             <span
                                                 className={`flex gap-1 items-center cursor-pointer ${post.likedByEmails.includes(userEmail) ? 'text-blue-500' : ''}`}
                                                 onClick={() => handleLikeClick(post._id)}
@@ -309,8 +307,8 @@ const GetPost = () => {
                                                 {post.like}
                                             </span>
                                         </span>
-                                        <h4 className='text-gray-900'>{formatDate(post.createdAt)}</h4>
-                                        <button className="text-blue-500 hover:underline"
+                                        <h4 className='text-gray-900 text-[12px] sm:text-xl text-center'>{formatDate(post.createdAt)}</h4>
+                                        <button className="text-blue-500 hover:underline text-[12px] sm:text-xl text-center"
                                             onClick={() => handlePostClick(post._id)}
                                         >Read more...</button>
                                     </div>
@@ -319,15 +317,15 @@ const GetPost = () => {
                         </div>
                     ))}
                 </Slider>
-                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-4 ">
+                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-1 ">
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => bookSummarySliderRef.current.slickPrev()}
                     >
                         <FaAngleLeft />
                     </button>
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => bookSummarySliderRef.current.slickNext()}
                     >
                         <FaAngleRight />
@@ -339,9 +337,9 @@ const GetPost = () => {
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Story</h1>
                 <Slider ref={storySliderRef} {...settings}>
                     {StoryPost.map((post) => (
-                        <div key={post._id} className='p-5'>
+                        <div key={post._id} className='p-1'>
                             <div
-                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-5 flex flex-col transition-shadow duration-300">
+                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"
                                     onClick={() => handlePostClick(post._id)}
                                 >
@@ -351,17 +349,16 @@ const GetPost = () => {
                                         alt={post.title}
                                     />
                                 </div>
-                                <div className="p-5 flex flex-col justify-between flex-grow">
-                                    <h3 className='text-2xl font-bold p-2 line-clamp-2' title={post.title}>
+                                <div className="p-1 flex flex-col justify-between flex-grow">
+                                    <h3 className='text-2xl font-bold p-1 line-clamp-2' title={post.title}>
                                         {post.title}
                                     </h3>
-                                    <p className='text-xl line-clamp-3' title={post.description}>
+                                    <p className='text-xl line-clamp-4 md:line-clamp-6 sm:line-clamp-5 ' title={post.description}>
                                         {post.description}
                                     </p>
-                                    <div className="flex text-2xl justify-between p-2 mt-auto">
+                                    <div className="flex text-2xl justify-between p-1 pb-2  mt-auto">
                                         <span className='flex gap-1 items-center'><AiTwotoneEye />{post.views}</span>
-                                        <span className='flex gap-1 items-center'
-                                        >
+                                        <span className='flex gap-1 items-center'>
                                             <span
                                                 className={`flex gap-1 items-center cursor-pointer ${post.likedByEmails.includes(userEmail) ? 'text-blue-500' : ''}`}
                                                 onClick={() => handleLikeClick(post._id)}
@@ -370,8 +367,8 @@ const GetPost = () => {
                                                 {post.like}
                                             </span>
                                         </span>
-                                        <h4 className='text-gray-900'>{formatDate(post.createdAt)}</h4>
-                                        <button className="text-blue-500 hover:underline"
+                                        <h4 className='text-gray-900 text-[12px] sm:text-xl text-center'>{formatDate(post.createdAt)}</h4>
+                                        <button className="text-blue-500 hover:underline text-[12px] sm:text-xl text-center"
                                             onClick={() => handlePostClick(post._id)}
                                         >Read more...</button>
                                     </div>
@@ -380,15 +377,15 @@ const GetPost = () => {
                         </div>
                     ))}
                 </Slider>
-                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-4 ">
+                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-1 ">
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => storySliderRef.current.slickPrev()}
                     >
                         <FaAngleLeft />
                     </button>
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => storySliderRef.current.slickNext()}
                     >
                         <FaAngleRight />
@@ -400,9 +397,9 @@ const GetPost = () => {
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Self Development</h1>
                 <Slider ref={selfDevelopmentSliderRef} {...settings}>
                     {SelfDevelopmentPost.map((post) => (
-                        <div key={post._id} className='p-5'>
+                        <div key={post._id} className='p-1'>
                             <div
-                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-5 flex flex-col transition-shadow duration-300">
+                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"
                                     onClick={() => handlePostClick(post._id)}
                                 >
@@ -412,17 +409,16 @@ const GetPost = () => {
                                         alt={post.title}
                                     />
                                 </div>
-                                <div className="p-5 flex flex-col justify-between flex-grow">
-                                    <h3 className='text-2xl font-bold p-2 line-clamp-2' title={post.title}>
+                                <div className="p-1 flex flex-col justify-between flex-grow">
+                                    <h3 className='text-2xl font-bold p-1 line-clamp-2' title={post.title}>
                                         {post.title}
                                     </h3>
-                                    <p className='text-xl line-clamp-3' title={post.description}>
+                                    <p className='text-xl line-clamp-4 md:line-clamp-6 sm:line-clamp-5 ' title={post.description}>
                                         {post.description}
                                     </p>
-                                    <div className="flex text-2xl justify-between p-2 mt-auto">
+                                    <div className="flex text-2xl justify-between p-1 pb-2  mt-auto">
                                         <span className='flex gap-1 items-center'><AiTwotoneEye />{post.views}</span>
-                                        <span className='flex gap-1 items-center'
-                                        >
+                                        <span className='flex gap-1 items-center'>
                                             <span
                                                 className={`flex gap-1 items-center cursor-pointer ${post.likedByEmails.includes(userEmail) ? 'text-blue-500' : ''}`}
                                                 onClick={() => handleLikeClick(post._id)}
@@ -431,8 +427,8 @@ const GetPost = () => {
                                                 {post.like}
                                             </span>
                                         </span>
-                                        <h4 className='text-gray-900'>{formatDate(post.createdAt)}</h4>
-                                        <button className="text-blue-500 hover:underline"
+                                        <h4 className='text-gray-900 text-[12px] sm:text-xl text-center'>{formatDate(post.createdAt)}</h4>
+                                        <button className="text-blue-500 hover:underline text-[12px] sm:text-xl text-center"
                                             onClick={() => handlePostClick(post._id)}
                                         >Read more...</button>
                                     </div>
@@ -441,15 +437,15 @@ const GetPost = () => {
                         </div>
                     ))}
                 </Slider>
-                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-4 ">
+                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-1 ">
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => selfDevelopmentSliderRef.current.slickPrev()}
                     >
                         <FaAngleLeft />
                     </button>
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => selfDevelopmentSliderRef.current.slickNext()}
                     >
                         <FaAngleRight />
@@ -461,9 +457,9 @@ const GetPost = () => {
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Life Fact</h1>
                 <Slider ref={lifeFactSliderRef} {...settings}>
                     {LifeFactPost.map((post) => (
-                        <div key={post._id} className='p-5'>
+                        <div key={post._id} className='p-1'>
                             <div
-                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-5 flex flex-col transition-shadow duration-300">
+                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"
                                     onClick={() => handlePostClick(post._id)}
                                 >
@@ -473,17 +469,16 @@ const GetPost = () => {
                                         alt={post.title}
                                     />
                                 </div>
-                                <div className="p-5 flex flex-col justify-between flex-grow">
-                                    <h3 className='text-2xl font-bold p-2 line-clamp-2' title={post.title}>
+                                <div className="p-1 flex flex-col justify-between flex-grow">
+                                    <h3 className='text-2xl font-bold p-1 line-clamp-2' title={post.title}>
                                         {post.title}
                                     </h3>
-                                    <p className='text-xl line-clamp-3' title={post.description}>
+                                    <p className='text-xl line-clamp-4 md:line-clamp-6 sm:line-clamp-5 ' title={post.description}>
                                         {post.description}
                                     </p>
-                                    <div className="flex text-2xl justify-between p-2 mt-auto">
+                                    <div className="flex text-2xl justify-between p-1 pb-2  mt-auto">
                                         <span className='flex gap-1 items-center'><AiTwotoneEye />{post.views}</span>
-                                        <span className='flex gap-1 items-center'
-                                        >
+                                        <span className='flex gap-1 items-center'>
                                             <span
                                                 className={`flex gap-1 items-center cursor-pointer ${post.likedByEmails.includes(userEmail) ? 'text-blue-500' : ''}`}
                                                 onClick={() => handleLikeClick(post._id)}
@@ -492,8 +487,8 @@ const GetPost = () => {
                                                 {post.like}
                                             </span>
                                         </span>
-                                        <h4 className='text-gray-900'>{formatDate(post.createdAt)}</h4>
-                                        <button className="text-blue-500 hover:underline"
+                                        <h4 className='text-gray-900 text-[12px] sm:text-xl text-center'>{formatDate(post.createdAt)}</h4>
+                                        <button className="text-blue-500 hover:underline text-[12px] sm:text-xl text-center"
                                             onClick={() => handlePostClick(post._id)}
                                         >Read more...</button>
                                     </div>
@@ -502,15 +497,15 @@ const GetPost = () => {
                         </div>
                     ))}
                 </Slider>
-                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-4 ">
+                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-1 ">
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => lifeFactSliderRef.current.slickPrev()}
                     >
                         <FaAngleLeft />
                     </button>
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => lifeFactSliderRef.current.slickNext()}
                     >
                         <FaAngleRight />
@@ -522,9 +517,9 @@ const GetPost = () => {
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Health</h1>
                 <Slider ref={healthSliderRef} {...settings}>
                     {HealthPost.map((post) => (
-                        <div key={post._id} className='p-5'>
+                        <div key={post._id} className='p-1'>
                             <div
-                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-5 flex flex-col transition-shadow duration-300">
+                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"
                                     onClick={() => handlePostClick(post._id)}
                                 >
@@ -534,17 +529,16 @@ const GetPost = () => {
                                         alt={post.title}
                                     />
                                 </div>
-                                <div className="p-5 flex flex-col justify-between flex-grow">
-                                    <h3 className='text-2xl font-bold p-2 line-clamp-2' title={post.title}>
+                                <div className="p-1 flex flex-col justify-between flex-grow">
+                                    <h3 className='text-2xl font-bold p-1 line-clamp-2' title={post.title}>
                                         {post.title}
                                     </h3>
-                                    <p className='text-xl line-clamp-3' title={post.description}>
+                                    <p className='text-xl line-clamp-4 md:line-clamp-6 sm:line-clamp-5 ' title={post.description}>
                                         {post.description}
                                     </p>
-                                    <div className="flex text-2xl justify-between p-2 mt-auto">
+                                    <div className="flex text-2xl justify-between p-1 pb-2  mt-auto">
                                         <span className='flex gap-1 items-center'><AiTwotoneEye />{post.views}</span>
-                                        <span className='flex gap-1 items-center'
-                                        >
+                                        <span className='flex gap-1 items-center'>
                                             <span
                                                 className={`flex gap-1 items-center cursor-pointer ${post.likedByEmails.includes(userEmail) ? 'text-blue-500' : ''}`}
                                                 onClick={() => handleLikeClick(post._id)}
@@ -553,8 +547,8 @@ const GetPost = () => {
                                                 {post.like}
                                             </span>
                                         </span>
-                                        <h4 className='text-gray-900'>{formatDate(post.createdAt)}</h4>
-                                        <button className="text-blue-500 hover:underline"
+                                        <h4 className='text-gray-900 text-[12px] sm:text-xl text-center'>{formatDate(post.createdAt)}</h4>
+                                        <button className="text-blue-500 hover:underline text-[12px] sm:text-xl text-center"
                                             onClick={() => handlePostClick(post._id)}
                                         >Read more...</button>
                                     </div>
@@ -563,15 +557,15 @@ const GetPost = () => {
                         </div>
                     ))}
                 </Slider>
-                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-4 ">
+                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-1 ">
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => healthSliderRef.current.slickPrev()}
                     >
                         <FaAngleLeft />
                     </button>
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => healthSliderRef.current.slickNext()}
                     >
                         <FaAngleRight />
@@ -583,9 +577,9 @@ const GetPost = () => {
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Psychology</h1>
                 <Slider ref={PsychologySliderRef} {...settings}>
                     {PsychologyPost.map((post) => (
-                        <div key={post._id} className='p-5'>
+                        <div key={post._id} className='p-1'>
                             <div
-                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-5 flex flex-col transition-shadow duration-300">
+                                className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"
                                     onClick={() => handlePostClick(post._id)}
                                 >
@@ -595,17 +589,16 @@ const GetPost = () => {
                                         alt={post.title}
                                     />
                                 </div>
-                                <div className="p-5 flex flex-col justify-between flex-grow">
-                                    <h3 className='text-2xl font-bold p-2 line-clamp-2' title={post.title}>
+                                <div className="p-1 flex flex-col justify-between flex-grow">
+                                    <h3 className='text-2xl font-bold p-1 line-clamp-2' title={post.title}>
                                         {post.title}
                                     </h3>
-                                    <p className='text-xl line-clamp-3' title={post.description}>
+                                    <p className='text-xl line-clamp-4 md:line-clamp-6 sm:line-clamp-5 ' title={post.description}>
                                         {post.description}
                                     </p>
-                                    <div className="flex text-2xl justify-between p-2 mt-auto">
+                                    <div className="flex text-2xl justify-between p-1 pb-2  mt-auto">
                                         <span className='flex gap-1 items-center'><AiTwotoneEye />{post.views}</span>
-                                        <span className='flex gap-1 items-center'
-                                        >
+                                        <span className='flex gap-1 items-center'>
                                             <span
                                                 className={`flex gap-1 items-center cursor-pointer ${post.likedByEmails.includes(userEmail) ? 'text-blue-500' : ''}`}
                                                 onClick={() => handleLikeClick(post._id)}
@@ -614,8 +607,8 @@ const GetPost = () => {
                                                 {post.like}
                                             </span>
                                         </span>
-                                        <h4 className='text-gray-900'>{formatDate(post.createdAt)}</h4>
-                                        <button className="text-blue-500 hover:underline"
+                                        <h4 className='text-gray-900 text-[12px] sm:text-xl text-center'>{formatDate(post.createdAt)}</h4>
+                                        <button className="text-blue-500 hover:underline text-[12px] sm:text-xl text-center"
                                             onClick={() => handlePostClick(post._id)}
                                         >Read more...</button>
                                     </div>
@@ -624,15 +617,15 @@ const GetPost = () => {
                         </div>
                     ))}
                 </Slider>
-                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-4 ">
+                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-1 ">
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => PsychologySliderRef.current.slickPrev()}
                     >
                         <FaAngleLeft />
                     </button>
                     <button
-                        className="text-black bg-gray-100 hover:shadow-lg px-4 py-5 rounded-md"
+                        className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => PsychologySliderRef.current.slickNext()}
                     >
                         <FaAngleRight />
