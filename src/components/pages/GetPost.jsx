@@ -139,6 +139,14 @@ const GetPost = () => {
         ]
     };
 
+    if (!posts.length) {
+        return <div className='w-full h-52 justify-center items-center flex '>
+            <img src="https://cdn.pixabay.com/animation/2023/10/08/03/19/03-19-26-213_512.gif"
+                className='w-28 h-28'
+                alt="" />
+        </div>;
+    }
+
     // 
     const motivationPosts = posts.filter(post => post.category === "Motivation");
     const BookSummaryPost = posts.filter(post => post.category === "Book Summary");
@@ -149,6 +157,7 @@ const GetPost = () => {
     const PsychologyPost = posts.filter(post => post.category === "Psychology");
 
     // 
+
 
     return (
         <>

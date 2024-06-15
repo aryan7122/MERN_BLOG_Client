@@ -1,0 +1,21 @@
+/* Scroll.css or your main CSS file */
+.custom-scrollbar {
+    overflow-x: auto;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    height: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: blue;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: darkblue;
+}

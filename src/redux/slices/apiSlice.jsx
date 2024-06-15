@@ -1,3 +1,4 @@
+// src/redux/slice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -6,6 +7,7 @@ const initialState = {
     user: null,
     userRole: null,
     userEmail: null,
+    loading: false, // Add loading state
 };
 
 const apiSlice = createSlice({
@@ -30,12 +32,14 @@ const apiSlice = createSlice({
         setUserRole(state, action) {
             state.userRole = action.payload;
         },
-        setPosts(state, action) { // Add a new reducer to update posts array
+        setPosts(state, action) {
             state.posts = action.payload;
         },
-        
+        setLoading(state, action) { // Add a new reducer to manage loading state
+            state.loading = action.payload;
+        },
     },
 });
 
-export const { login, logout, setUserRole, setPosts } = apiSlice.actions;
+export const { login, logout, setUserRole, setPosts, setLoading } = apiSlice.actions;
 export default apiSlice.reducer;

@@ -78,6 +78,13 @@ const Story = () => {
             console.error("Error updating likes:", error);
         }
     };
+    if (!posts.length) {
+        return <div className='w-full h-screen justify-center items-center flex'>
+            <img src="https://cdn.pixabay.com/animation/2023/10/08/03/19/03-19-26-213_512.gif"
+                className='w-28 h-28'
+                alt="" />
+        </div>;
+    }
 
     const StoryPost = posts.filter(post => post.category === "Story");
 

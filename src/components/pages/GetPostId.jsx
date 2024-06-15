@@ -69,7 +69,11 @@ const GetPostId = () => {
     }
 
     if (!posts.length) {
-        return <div>Loading...</div>;
+        return <div className='w-full h-screen p-10 justify-center items-center flex'>
+            <img src="https://cdn.pixabay.com/animation/2023/10/08/03/19/03-19-26-213_512.gif"
+                className='w-28 h-28'
+                alt="" />
+        </div>
     }
 
     const post = posts[0]; // Since we are wrapping the post in an array

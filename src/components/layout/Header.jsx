@@ -30,7 +30,9 @@ const Header = () => {
         dispatch(logout());
         setIsMenuOpen(false);
     };
-
+    const clickto = () => {
+        setIsMenuNav(false)
+    }
     return (
         <header className='flex sticky z-30 items-center justify-between w-full h-16 px-4 bg-white  drop-shadow-sm  text-slate-800 font-medium  top-0  bg-transparent backdrop-blur'>
             {/* Logo */}
@@ -47,8 +49,8 @@ const Header = () => {
 
 
             {/* Navigation Links */}
-            <nav className={` lg:flex  ${isMenuNav ? 'flex ml-[-15px]  justify-center mt-20 absolute w-full h-screen text-center pl-[-20%]  z-[99999px] items-center   drop-shadow-lg  text-slate-100  font-medium  top-0  bg-slate-900' : 'hidden'}`}>
-                <ul className='flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4 gap-5'>
+            <nav className={` lg:flex  ${isMenuNav ? 'flex ml-[-12px] text-xl  justify-center mt-16 absolute w-full h-screen text-center pl-[-20%]  z-[99999px] items-center   drop-shadow-lg  text-slate-100  font-medium  top-0  bg-slate-900' : 'hidden'}`}>
+                <ul className='flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4 gap-5' onClick={clickto}>
                     <li className='lg:text-xl text-4xl  hover:text-gray-400'>
                         <Link to="/">Home</Link>
                     </li>
@@ -89,7 +91,7 @@ const Header = () => {
                         <FiSearch className='w-6 h-6 text-gray-400 hover:text-black' />
                     </button>
                     {isSearchOpen && (
-                        <div className='absolute right-0 mt-[-24px] mr-8'>
+                        <div className='absolute right-0 mt-[-27px] mr-6'>
                             <input
                                 type="text"
                                 placeholder="Search..."
@@ -102,16 +104,16 @@ const Header = () => {
                 {/* User Profile Link */}
                 <div className='text-xl    hover:text-gray-400 relative'>
                     <FiUser
-                        className='w-14 h-14 rounded-full border cursor-pointer'
+                        className='w-10 h-10 md:w-12 md:h-12 rounded-full border cursor-pointer'
                         onClick={toggleMenu}
                     />
                     {isMenuOpen && (
-                        <div className='absolute shadow-md mt-14 left-[-130px]  h-[94vh] text-slate-800 w-[230px] delay-200  p-4 py-3  font-medium top-0  bg-white' >
+                        <div className='absolute shadow-md mt-12 left-[-128px]  h-[98vh] text-slate-800 w-[230px] delay-200  p-4 py-3  font-medium top-0  bg-white' >
                             <ul className=''>
                                 {isLoggedIn ? (
                                     <>
                                         <li className='text-3xl py-3  cursor-pointer  p-2 w-full'>
-                                            <span  className='flex gap-5  items-center w-fit border-l-4 '>
+                                            <span className='flex gap-5  items-center w-fit border-l-4 '>
                                                 <span className='pl-2'>{username}</span></span>
                                         </li>
                                         {userRole === 'Admin' || userRole === 'Author' ?
@@ -134,7 +136,7 @@ const Header = () => {
                                             :
                                             ''
                                         }
-                                        {userRole === 'Admin'  ?
+                                        {userRole === 'Admin' ?
                                             <li className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full' onClick={toggleMenu}>
                                                 <Link to="/user" className='flex gap-5 active:gap-1 items-center'>
                                                     <FiUser /> Users </Link>
@@ -142,13 +144,13 @@ const Header = () => {
                                             :
                                             ''
                                         }
-                                        {userRole === 'Admin' ? 
+                                        {userRole === 'Admin' ?
                                             <li className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full' onClick={toggleMenu}>
                                                 <Link to="/role" className='flex gap-5 active:gap-1 items-center'>
                                                     <FaAddressCard /> Role </Link>
                                             </li>
                                             :
-                                           ''
+                                            ''
                                         }
                                         <li
                                             className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full'
