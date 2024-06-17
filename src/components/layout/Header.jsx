@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiSearch, FiUser, FiLogOut, FiEdit, FiMenu, FiLogIn, } from 'react-icons/fi'; // Importing necessary icons
-import { FaAddressCard } from "react-icons/fa";
+// import { FaAddressCard } from "react-icons/fa";
 import { AiTwotoneDashboard, AiFillLike } from "react-icons/ai";
 
 
@@ -146,14 +146,14 @@ const Header = () => {
                                             :
                                             ''
                                         }
-                                        {userRole === 'Admin' ?
+                                        {/* {userRole === 'Admin' ?
                                             <li className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full' onClick={toggleMenu}>
                                                 <Link to="/role" className='flex gap-5 active:gap-1 items-center'>
                                                     <FaAddressCard /> Role </Link>
                                             </li>
                                             :
                                             ''
-                                        }
+                                        } */}
                                         <li
                                             className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full'
                                             onClick={handleLogout}>
