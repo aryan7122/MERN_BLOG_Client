@@ -1,51 +1,50 @@
 import React, { useState } from "react";
 import axios from "axios";
 import JoditEditor from "jodit-react";
-import '../../assets/Styles/customStyles.css'
+import '../../assets/Styles/customStyles.css';
+
 const BlogEditor = () => {
     const [title, setTitle] = useState("");
     const [url, setUrl] = useState("");
-    const [posts, setPosts] = useState([]);
-
     const [category, setCategory] = useState("");
     const [description, setDescription] = useState("");
     const [content, setContent] = useState("");
     const [message, setMessage] = useState("");
-    console.log('category', category)
+    const [loading, setLoading] = useState(false); // Added loading state
 
     const handleSave = async () => {
+        setLoading(true); // Start loading
         try {
-
             const response = await axios.post(`${process.env.REACT_APP_SERVER}/api/posts`, {
                 title,
                 url,
                 description,
                 content,
-                category
+                category,
             });
-            setPosts(response.data)
             console.log("Post saved successfully:", response.data);
             setMessage("Post Published successfully!");
             // You can redirect the user to another page after saving the post if needed
         } catch (error) {
             console.error("Error saving post:", error);
             setMessage("Error saving post.");
+        } finally {
+            setLoading(false); // End loading
         }
     };
-    if (!posts.length) {
-        return <div className='w-full h-screen justify-center items-center flex'>
-            <img src="https://cdn.pixabay.com/animation/2023/10/08/03/19/03-19-26-213_512.gif"
-                className='w-28 h-28'
-                alt="Loading" />
-        </div>;
-    }
 
     return (
-        <div className="border p-3    w-full">
+        <div className="border p-3 w-full">
             <h3 className="text-2xl font-bold">Add New Post</h3>
-            <button className="bg-black text-white p-3 rounded-md text-2xl mb-3 mt-2" onClick={handleSave}>Publish</button>
+            <button
+                className="bg-black text-white p-3 rounded-md text-2xl mb-3 mt-2"
+                onClick={handleSave}
+                disabled={loading} // Disable button during loading
+            >
+                {loading ? "Publishing..." : "Publish"}
+            </button>
             {message && <p className="mb-2">{message}</p>}
-            <div className="mb-2 grid grid-cols-1 gap-5 ">
+            <div className="mb-2 grid grid-cols-1 gap-5">
                 <input
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
@@ -73,10 +72,9 @@ const BlogEditor = () => {
                     placeholder="Description about post..."
                     className="border mr-2 p-1 h-20 text-lg"
                 />
-                <div className="border mr-2  p-1 text-2xl bold grid grid-cols-2  sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6  xl:grid-cols-7 xl:pl-10  gap-4 w-full h-fit">
-                    {/* <h1 className="text-sm text-center  font-bold text-gray-600  z-30">Category:</h1> */}
-                    {["Motivation", "Book Summary", "Self Development", "Story", "Life Fact", "Health","Psychology"].map((cat) => (
-                        <div key={cat} className="flex gap-2 border w-fit  hover:border-green-700 rounded-sm cursor-alias ">
+                <div className="border mr-2 p-1 text-2xl bold grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 xl:pl-10 gap-4 w-full h-fit">
+                    {["Motivation", "Book Summary", "Self Development", "Story", "Life Fact", "Health", "Psychology"].map((cat) => (
+                        <div key={cat} className="flex gap-2 border w-fit hover:border-green-700 rounded-sm cursor-alias">
                             <input
                                 value={cat}
                                 onChange={(e) => setCategory(e.target.value)}
@@ -93,7 +91,6 @@ const BlogEditor = () => {
                 </div>
             </div>
             <JoditEditor
-                className=""
                 value={content}
                 tabIndex={1}
                 onChange={(newContent) => setContent(newContent)}
