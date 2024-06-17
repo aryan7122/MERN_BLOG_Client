@@ -108,7 +108,7 @@ const Header = () => {
                         onClick={toggleMenu}
                     />
                     {isMenuOpen && (
-                        <div className='absolute shadow-md mt-12 left-[-128px]  h-[98vh] text-slate-800 w-[230px] delay-200  p-4 py-3  font-medium top-0  bg-white' >
+                        <div className='absolute shadow-md mt-12 left-[-130px]  h-[98vh] text-slate-800 w-[230px] delay-200  p-4 py-3  font-medium top-0  bg-white' >
                             <ul className=''>
                                 {isLoggedIn ? (
                                     <>
@@ -124,10 +124,12 @@ const Header = () => {
                                             :
                                             ''
                                         }
+                                        
                                         <li className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full' onClick={toggleMenu}>
                                             <Link to="/like" className='flex gap-5 active:gap-1 items-center'>
                                                 <AiFillLike /> Like  </Link>
                                         </li>
+
                                         {userRole === 'Admin' ?
                                             <li className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full' onClick={toggleMenu}>
                                                 <Link to="/dashboard" className='flex gap-5 active:gap-1 items-center'>

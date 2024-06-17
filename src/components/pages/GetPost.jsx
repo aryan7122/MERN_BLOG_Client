@@ -10,6 +10,8 @@ import { FaAngleRight } from "react-icons/fa";
 import { AiTwotoneEye, AiTwotoneLike } from "react-icons/ai";
 import { AuthContext } from '../../context/AuthContext';
 import { useSelector } from 'react-redux';
+import AlertBox from '../layout/AlertBox';
+
 <style>
     {`
     .line-clamp-2 {
@@ -38,6 +40,8 @@ const GetPost = () => {
     const healthSliderRef = useRef(null); // Ref for health posts slider
     const PsychologySliderRef = useRef(null); // Ref for life fact posts slider
     // console.log('posts:::::::::👹👹', posts.map((post) => (post.category)))
+    const [alertMessage, setAlertMessage] = useState(null);
+
 
     const { user, isLoggedIn, } = useContext(AuthContext);
     const { userEmail } = useSelector((state) => state.api);
@@ -46,7 +50,7 @@ const GetPost = () => {
         fetchPosts();
     }, []);
 
-    console.log('response', posts)
+    // console.log('response', posts)
     const fetchPosts = async () => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_SERVER}/api/posts`);
@@ -89,7 +93,10 @@ const GetPost = () => {
     const handleLikeClick = async (id) => {
         // console.log('userEmail', userEmail)
         if (!isLoggedIn()) {
-            alert("You need to log in to like a post");
+            setAlertMessage(null); // Clear the current alert message
+            setTimeout(() => {
+                setAlertMessage("You need to login to like a post.");
+            }, 10); // Use a short delay to reset the state
             return;
         }
         try {
@@ -161,12 +168,13 @@ const GetPost = () => {
 
     return (
         <>
+            {alertMessage && <AlertBox message={alertMessage} duration={5000} />}
             {/* resentPost */}
-            <div className='border overflow-hidden relative'>
+            <div className=' overflow-hidden relative'>
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Recent Post</h1>
                 <Slider ref={recentSliderRef} {...settings}>
                     {posts.map((post) => (
-                        <div key={post._id} className='p-1'>
+                        <div key={post._id} className='p-1 py-5'>
                             <div
                                 className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"
@@ -206,7 +214,7 @@ const GetPost = () => {
                         </div>
                     ))}
                 </Slider>
-                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px-1 ">
+                <div className="flex justify-between absolute top-1/2 left-0 right-0 transform -translate-y-1/2 px- ">
                     <button
                         className="text-black bg-gray-100 hover:shadow-lg px-2 py-2 rounded-md"
                         onClick={() => recentSliderRef.current.slickPrev()}
@@ -222,11 +230,11 @@ const GetPost = () => {
                 </div>
             </div>
             {/* {motivation } */}
-            <div className='border overflow-hidden relative'>
+            <div className=' overflow-hidden relative'>
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Motivation</h1>
                 <Slider ref={motivationSliderRef} {...settings}>
                     {motivationPosts.map((post) => (
-                        <div key={post._id} className='p-1'>
+                        <div key={post._id} className='p-1 py-5'>
                             <div
                                 className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"
@@ -282,11 +290,11 @@ const GetPost = () => {
                 </div>
             </div>
             {/* {bookSummary } */}
-            <div className='border overflow-hidden relative'>
+            <div className=' overflow-hidden relative'>
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Book Summary</h1>
                 <Slider ref={bookSummarySliderRef} {...settings}>
                     {BookSummaryPost.map((post) => (
-                        <div key={post._id} className='p-1'>
+                        <div key={post._id} className='p-1 py-5'>
                             <div
                                 className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"
@@ -342,11 +350,11 @@ const GetPost = () => {
                 </div>
             </div>
             {/* {StoryPost} */}
-            <div className='border overflow-hidden relative'>
+            <div className='overflow-hidden relative'>
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Story</h1>
                 <Slider ref={storySliderRef} {...settings}>
                     {StoryPost.map((post) => (
-                        <div key={post._id} className='p-1'>
+                        <div key={post._id} className='p-1 py-5'>
                             <div
                                 className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"
@@ -402,11 +410,11 @@ const GetPost = () => {
                 </div>
             </div>
             {/* {SelfDevelopmentPost } */}
-            <div className='border overflow-hidden relative'>
+            <div className=' overflow-hidden relative'>
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Self Development</h1>
                 <Slider ref={selfDevelopmentSliderRef} {...settings}>
                     {SelfDevelopmentPost.map((post) => (
-                        <div key={post._id} className='p-1'>
+                        <div key={post._id} className='p-1 py-5'>
                             <div
                                 className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"
@@ -462,11 +470,11 @@ const GetPost = () => {
                 </div>
             </div>
             {/* {LifeFactPost } */}
-            <div className='border overflow-hidden relative'>
+            <div className=' overflow-hidden relative'>
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Life Fact</h1>
                 <Slider ref={lifeFactSliderRef} {...settings}>
                     {LifeFactPost.map((post) => (
-                        <div key={post._id} className='p-1'>
+                        <div key={post._id} className='p-1 py-5'>
                             <div
                                 className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"
@@ -522,11 +530,11 @@ const GetPost = () => {
                 </div>
             </div>
             {/* {HealthPost } */}
-            <div className='border overflow-hidden relative'>
+            <div className=' overflow-hidden relative'>
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Health</h1>
                 <Slider ref={healthSliderRef} {...settings}>
                     {HealthPost.map((post) => (
-                        <div key={post._id} className='p-1'>
+                        <div key={post._id} className='p-1 py-5'>
                             <div
                                 className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"
@@ -582,11 +590,11 @@ const GetPost = () => {
                 </div>
             </div>
             {/* {PsychologyPost } */}
-            <div className='border overflow-hidden relative'>
+            <div className=' overflow-hidden relative'>
                 <h1 className='ml-4 mt-4 border-b-4 w-fit font-bold text-2xl'>Psychology</h1>
                 <Slider ref={PsychologySliderRef} {...settings}>
                     {PsychologyPost.map((post) => (
-                        <div key={post._id} className='p-1'>
+                        <div key={post._id} className='p-1 py-5'>
                             <div
                                 className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
                                 <div className="w-full h-[300px] overflow-hidden"

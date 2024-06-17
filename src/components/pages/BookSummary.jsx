@@ -5,11 +5,13 @@ import Carousel from './Carousel';
 import { AiTwotoneEye, AiTwotoneLike } from "react-icons/ai";
 import { AuthContext } from '../../context/AuthContext';
 import { useSelector } from 'react-redux';
+import AlertBox from '../layout/AlertBox';
 
 const BookSummary = () => {
     const [posts, setPosts] = useState([]);
     const { user, isLoggedIn, } = useContext(AuthContext);
     const { userEmail } = useSelector((state) => state.api);
+    const [alertMessage, setAlertMessage] = useState(null);
 
     const navigate = useNavigate();
 
@@ -59,7 +61,10 @@ const BookSummary = () => {
     const handleLikeClick = async (id) => {
         // console.log('userEmail', userEmail)
         if (!isLoggedIn()) {
-            alert("You need to log in to like a post");
+            setAlertMessage(null); // Clear the current alert message
+            setTimeout(() => {
+                setAlertMessage("You need to login to like a post.");
+            }, 10); // Use a short delay to reset the state
             return;
         }
         try {
@@ -92,20 +97,21 @@ const BookSummary = () => {
     return (
         <div>
             <Carousel text="Books" imageUrl="https://www.chitkara.edu.in/blogs/wp-content/uploads/2023/09/Blogging-in-Digital-Marketing.jpg" />
+            {alertMessage && <AlertBox message={alertMessage} duration={5000} />}
             {BookSummaryPost.map((post) => (
                 <div key={post._id} className='p-1'>
                     <div
-                        className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
-                        <div className="w-full h-[300px] overflow-hidden"
+                        className="bg-white lg:h-fit h-fit w-full shadow-lg hover:shadow-2xl rounded-md p-1    lg:flex transition-shadow duration-300">
+                        <div className="w-full  lg:w-[350px] lg:h-fit h-[300px] overflow-hidden"
                             onClick={() => handlePostClick(post._id)}
                         >
                             <img
-                                className='w-full h-[300px] object-cover object-top hover:scale-105 transition-transform duration-300'
+                                className='w-full   lg:w-[350px] lg:h-[200px] h-[300px] object-cover object-top hover:scale-105 transition-transform duration-300'
                                 src={post.url}
                                 alt={post.title}
                             />
                         </div>
-                        <div className="p-1 flex flex-col justify-between flex-grow">
+                        <div className="p-1 w-full px-2  flex flex-col  flex-grow">
                             <h3 className='text-2xl font-bold p-1 line-clamp-2' title={post.title}>
                                 {post.title}
                             </h3>

@@ -5,6 +5,8 @@ import '../../assets/Styles/customStyles.css'
 const BlogEditor = () => {
     const [title, setTitle] = useState("");
     const [url, setUrl] = useState("");
+    const [posts, setPosts] = useState([]);
+
     const [category, setCategory] = useState("");
     const [description, setDescription] = useState("");
     const [content, setContent] = useState("");
@@ -21,6 +23,7 @@ const BlogEditor = () => {
                 content,
                 category
             });
+            setPosts(response.data)
             console.log("Post saved successfully:", response.data);
             setMessage("Post Published successfully!");
             // You can redirect the user to another page after saving the post if needed
@@ -29,6 +32,13 @@ const BlogEditor = () => {
             setMessage("Error saving post.");
         }
     };
+    if (!posts.length) {
+        return <div className='w-full h-screen justify-center items-center flex'>
+            <img src="https://cdn.pixabay.com/animation/2023/10/08/03/19/03-19-26-213_512.gif"
+                className='w-28 h-28'
+                alt="Loading" />
+        </div>;
+    }
 
     return (
         <div className="border p-3    w-full">
@@ -77,7 +87,7 @@ const BlogEditor = () => {
                                 placeholder="Category"
                                 required
                             />
-                            <h1 className="absolute p-2">{cat}</h1>
+                            <h1 className="absolute p-2 text-sm md:text-xl lg:text-2xl">{cat}</h1>
                         </div>
                     ))}
                 </div>

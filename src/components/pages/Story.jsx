@@ -94,17 +94,17 @@ const Story = () => {
             {StoryPost.map((post) => (
                 <div key={post._id} className='p-1'>
                     <div
-                        className="bg-white h-[500px] w-full shadow-lg hover:shadow-2xl rounded-md p-1 flex flex-col transition-shadow duration-300">
-                        <div className="w-full h-[300px] overflow-hidden"
+                        className="bg-white lg:h-fit h-fit w-full shadow-lg hover:shadow-2xl rounded-md p-1    lg:flex transition-shadow duration-300">
+                        <div className="w-full  lg:w-[350px] lg:h-fit h-[300px] overflow-hidden"
                             onClick={() => handlePostClick(post._id)}
                         >
                             <img
-                                className='w-full h-[300px] object-cover object-top hover:scale-105 transition-transform duration-300'
+                                className='w-full   lg:w-[350px] lg:h-[200px] h-[300px] object-cover object-top hover:scale-105 transition-transform duration-300'
                                 src={post.url}
                                 alt={post.title}
                             />
                         </div>
-                        <div className="p-1 flex flex-col justify-between flex-grow">
+                        <div className="p-1 w-full px-2  flex flex-col  flex-grow">
                             <h3 className='text-2xl font-bold p-1 line-clamp-2' title={post.title}>
                                 {post.title}
                             </h3>

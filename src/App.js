@@ -18,6 +18,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Loading from './components/layout/Loading.jsx';
 import { AuthProvider } from './context/AuthContext';
 import { setLoading } from './redux/slices/apiSlice.jsx';
+import PostLike from './components/other/PostLike.jsx';
+import UserList from './components/other/UserList.jsx';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -42,7 +44,7 @@ const App = () => {
   if (loading) {
     return <Loading />;
   }
-
+  
   return (
     <Router>
       <Header />
@@ -57,8 +59,9 @@ const App = () => {
           <Route path="/post/:id" element={<GetPostId />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/like" element={<PostLike />} />
           <Route path="/edit" element={<ProtectedRoute><BlogEditor /></ProtectedRoute>} />
-          <Route path="/admin" element={<ProtectedRoute><div>Admin Page</div></ProtectedRoute>} />
+          <Route path="/user" element={<ProtectedRoute><UserList /></ProtectedRoute>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AuthProvider>
