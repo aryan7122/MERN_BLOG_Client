@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Home from './components/pages/Home';
 import Motivation from './components/pages/Motivation';
+import Health from './components/pages/Health';
 import BookSummary from './components/pages/BookSummary';
 import SelfDevelopment from './components/pages/SelfDevelopment';
 import Story from './components/pages/Story';
@@ -63,6 +64,7 @@ const App = () => {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/like" element={<PostLike />} />
+              <Route path="/health" element={<Health />} />
               <Route path="/edit" element={<ProtectedRoute><BlogEditor /></ProtectedRoute>} />
               <Route path="/user" element={<ProtectedRoute><UserList /></ProtectedRoute>} />
               <Route path="*" element={<NotFound />} />
