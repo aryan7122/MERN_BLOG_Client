@@ -22,6 +22,14 @@ import { setLoading } from './redux/slices/apiSlice';
 import PostLike from './components/other/PostLike';
 import UserList from './components/other/UserList';
 import Footer from './components/layout/Footer';
+import ScrollToTopButton from './components/ScrollToTopButton'; // Import ScrollToTopButton component
+import Dashboard from './components/other/Dashboard';
+import Subscribers from './components/other/Subscribers';
+
+// import DarkModeToggle from './components/pages/DarkModeToggle';
+// import { DarkModeProvider } from './context/DarkModeContext';
+// import './assets/Styles/globalStyles.css'; // Import global styles
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -49,6 +57,8 @@ const App = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      {/* <DarkModeProvider> */}
+
       <Router>
         <Header />
         <AuthProvider>
@@ -65,14 +75,20 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/like" element={<PostLike />} />
               <Route path="/health" element={<Health />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/edit" element={<ProtectedRoute><BlogEditor /></ProtectedRoute>} />
               <Route path="/user" element={<ProtectedRoute><UserList /></ProtectedRoute>} />
+              <Route path="/subscribers" element={<ProtectedRoute><Subscribers /></ProtectedRoute>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
         </AuthProvider>
         <Footer />
+        {/* <DarkModeToggle /> */}
+        <ScrollToTopButton/>
       </Router>
+      {/* </DarkModeProvider> */}
+
     </div>
   );
 };

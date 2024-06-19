@@ -1,0 +1,40 @@
+/* src/assets/styles/globalStyles.css */
+
+:root {
+    --background-color: white;
+    --text-color: black;
+    --input-background: white;
+    --input-text-color: black;
+    --button-background: slate-950;
+    --button-text-color: white;
+}
+
+.dark {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --input-background: #333333;
+    --input-text-color: #ffffff;
+    --button-background: #333333;
+    --button-text-color: #ffffff;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+
+/* p,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    background-color: var(--background-color);
+    color: var(--text-color);
+} */
+
+/* button {
+    background-color: var(--button-background);
+    color: var(--button-text-color);
+} */

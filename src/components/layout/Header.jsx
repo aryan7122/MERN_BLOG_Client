@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiSearch, FiUser, FiLogOut, FiEdit, FiMenu, FiLogIn, } from 'react-icons/fi'; // Importing necessary icons
 // import { FaAddressCard } from "react-icons/fa";
 import { AiTwotoneDashboard, AiFillLike } from "react-icons/ai";
+import { IoNotifications } from "react-icons/io5";
 
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -142,6 +143,14 @@ const Header = () => {
                                             <li className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full' onClick={toggleMenu}>
                                                 <Link to="/user" className='flex gap-5 active:gap-1 items-center'>
                                                     <FiUser /> Users </Link>
+                                            </li>
+                                            :
+                                            ''
+                                        }
+                                        {userRole === 'Admin' ?
+                                            <li className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full' onClick={toggleMenu}>
+                                                <Link to="/subscribers" className='flex gap-5 active:gap-1 items-center'>
+                                                    <IoNotifications /> subscribers </Link>
                                             </li>
                                             :
                                             ''

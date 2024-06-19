@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import JoditEditor from "jodit-react";
 import '../../assets/Styles/customStyles.css';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const BlogEditor = () => {
     const [title, setTitle] = useState("");
@@ -10,6 +12,7 @@ const BlogEditor = () => {
     const [description, setDescription] = useState("");
     const [content, setContent] = useState("");
     const [message, setMessage] = useState("");
+    const [alertType, setAlertType] = useState('success');
     const [loading, setLoading] = useState(false); // Added loading state
 
     const handleSave = async () => {
@@ -24,17 +27,22 @@ const BlogEditor = () => {
             });
             console.log("Post saved successfully:", response.data);
             setMessage("Post Published successfully!");
+            setAlertType('success');
             // You can redirect the user to another page after saving the post if needed
         } catch (error) {
             console.error("Error saving post:", error);
             setMessage("Error saving post.");
+            setAlertType('error');
         } finally {
             setLoading(false); // End loading
+            setTimeout(() => {
+                setMessage('');
+            }, 5000);
         }
     };
 
     return (
-        <div className="border p-3 w-full">
+        <div className="border p-3 w-full relative">
             <h3 className="text-2xl font-bold">Add New Post</h3>
             <button
                 className="bg-black text-white p-3 rounded-md text-2xl mb-3 mt-2"
@@ -43,7 +51,23 @@ const BlogEditor = () => {
             >
                 {loading ? "Publishing..." : "Publish"}
             </button>
-            {message && <p className="mb-2">{message}</p>}
+            {message && (
+                <Stack
+                    sx={{
+                        position: 'fixed',
+                        top: '10%',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        maxWidth: '90%', // Ensure it doesn't go beyond screen width on smaller screens
+                        zIndex: 50,
+                    }}
+                    spacing={2}
+                >
+                    <Alert severity={alertType} sx={{ width: 'auto' }}>
+                        {message}
+                    </Alert>
+                </Stack>
+            )}
             <div className="mb-2 grid grid-cols-1 gap-5">
                 <input
                     value={title}

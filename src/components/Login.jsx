@@ -3,11 +3,15 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { login } from '../services/api';
 import { Link } from 'react-router-dom';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState('');
+    const [alertType, setAlertType] = useState('success');
     const { user, login: loginUser, logout } = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
@@ -16,23 +20,52 @@ const Login = () => {
         try {
             const userData = await login(email, password);
             loginUser(userData);
+            setMessage('Login successful!');
+            setAlertType('success');
             console.log('login');
         } catch (error) {
             console.error('Login error:', error);
+            setMessage('Login failed. Please try again.');
+            setAlertType('error');
         } finally {
             setLoading(false);
+            setTimeout(() => {
+                setMessage('');
+            }, 5000);
         }
     };
 
     const handleLogout = () => {
         logout();
+        setMessage('Logout successful!');
+        setAlertType('success');
         console.log('logout');
+        setTimeout(() => {
+            setMessage('');
+        }, 5000);
     };
 
     return (
         <div className='w-full h-[90vh] flex items-center justify-center'>
+            {message && (
+                <Stack
+                    sx={{
+                        position: 'fixed',
+                        top: '10%',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        maxWidth: '90%', // Ensure it doesn't go beyond screen width on smaller screens
+                        zIndex: 50,
+                    }}
+                    spacing={2}
+                >
+                    <Alert severity={alertType} sx={{ width: 'auto' }}>
+                        {message}
+                    </Alert>
+                </Stack>
+            )}
             {user ? (
-                <button onClick={handleLogout}>Logout</button>
+                <button onClick={handleLogout} className='w-full border my-5 bg-slate-950 text-white text-2xl p-3 rounded-lg active:shadow-2xl active:bg-slate-800 hover:shadow-xl'>Logout</button>
             ) : (
                 <form onSubmit={handleSubmit}>
                     <div className="p-10 rounded-lg shadow-none sm:shadow-lg hover:md:shadow-2xl">
