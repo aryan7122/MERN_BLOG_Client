@@ -85,11 +85,7 @@ const Subscribers = () => {
                                         alt=""
                                     />
                                 </td>
-                                <td className='py-2 px-4 text-center'>{user.name}</td>
                                 <td className='py-2 px-4 text-center'>{user.email}</td>
-                                <td className='py-2 px-4 text-center'>
-                                   
-                                </td>
                                 <td className='py-2 px-4 text-center'>
                                     <button
                                         onClick={() => deleteUser(user._id)}

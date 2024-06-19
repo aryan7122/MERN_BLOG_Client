@@ -6,7 +6,7 @@ import { AiTwotoneEye, AiTwotoneLike } from "react-icons/ai";
 import { AuthContext } from '../../context/AuthContext';
 import { useSelector } from 'react-redux';
 
-const Fact = () => {
+const Mony = () => {
     const [posts, setPosts] = useState([]);
     const { user, isLoggedIn, } = useContext(AuthContext);
     const { userEmail } = useSelector((state) => state.api);
@@ -86,7 +86,7 @@ const Fact = () => {
         </div>;
     }
 
-    const LifeFactPost = posts.filter(post => post.category === "Life Fact");
+    const LifeFactPost = posts.filter(post => post.category === "Mony");
 
     return (
         <div>
@@ -135,4 +135,4 @@ const Fact = () => {
     );
 };
 
-export default Fact;
+export default Mony;

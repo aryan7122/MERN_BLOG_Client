@@ -4,6 +4,7 @@ import { FiSearch, FiUser, FiLogOut, FiEdit, FiMenu, FiLogIn, } from 'react-icon
 // import { FaAddressCard } from "react-icons/fa";
 import { AiTwotoneDashboard, AiFillLike } from "react-icons/ai";
 import { IoNotifications } from "react-icons/io5";
+import { FaList } from "react-icons/fa";
 
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -68,7 +69,7 @@ const Header = () => {
                         <Link to="/Story">Story</Link>
                     </li>
                     <li className='lg:text-xl text-4xl  hover:text-gray-400'>
-                        <Link to="/fact">Fact</Link>
+                        <Link to="/mony">Mony</Link>
                     </li>
                     <li className='lg:text-xl text-4xl  hover:text-gray-400'>
                         <Link to="/health">Health</Link>
@@ -143,6 +144,14 @@ const Header = () => {
                                             <li className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full' onClick={toggleMenu}>
                                                 <Link to="/user" className='flex gap-5 active:gap-1 items-center'>
                                                     <FiUser /> Users </Link>
+                                            </li>
+                                            :
+                                            ''
+                                        }
+                                        {userRole === 'Admin' ?
+                                            <li className='text-3xl py-3  hover:text-gray-400 cursor-pointer  p-2 w-full' onClick={toggleMenu}>
+                                                <Link to="/postlist" className='flex gap-5 active:gap-1 items-center'>
+                                                    <FaList /> Post List </Link>
                                             </li>
                                             :
                                             ''

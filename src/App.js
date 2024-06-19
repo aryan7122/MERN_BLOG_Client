@@ -8,7 +8,7 @@ import Health from './components/pages/Health';
 import BookSummary from './components/pages/BookSummary';
 import SelfDevelopment from './components/pages/SelfDevelopment';
 import Story from './components/pages/Story';
-import Fact from './components/pages/Fact';
+import Mony from './components/pages/Mony';
 import NotFound from './components/pages/NotFound';
 import Header from './components/layout/Header';
 import BlogEditor from './components/pages/BlogEditor';
@@ -25,6 +25,7 @@ import Footer from './components/layout/Footer';
 import ScrollToTopButton from './components/ScrollToTopButton'; // Import ScrollToTopButton component
 import Dashboard from './components/other/Dashboard';
 import Subscribers from './components/other/Subscribers';
+import PostList from './components/other/PostListe';
 
 // import DarkModeToggle from './components/pages/DarkModeToggle';
 // import { DarkModeProvider } from './context/DarkModeContext';
@@ -69,7 +70,7 @@ const App = () => {
               <Route path="/BookSummary" element={<BookSummary />} />
               <Route path="/selfDevelopment" element={<SelfDevelopment />} />
               <Route path="/Story" element={<Story />} />
-              <Route path="/fact" element={<Fact />} />
+              <Route path="/mony" element={<Mony />} />
               <Route path="/post/:id" element={<GetPostId />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
@@ -78,6 +79,7 @@ const App = () => {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/edit" element={<ProtectedRoute><BlogEditor /></ProtectedRoute>} />
               <Route path="/user" element={<ProtectedRoute><UserList /></ProtectedRoute>} />
+              <Route path="/postlist" element={<ProtectedRoute><PostList /></ProtectedRoute>} />
               <Route path="/subscribers" element={<ProtectedRoute><Subscribers /></ProtectedRoute>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
