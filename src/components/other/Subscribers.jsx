@@ -45,7 +45,7 @@ const Subscribers = () => {
 
     return (
         <div className='container mx-auto p-4'>
-            <h2 className='text-3xl font-bold mb-4 text-center'>User List</h2>
+            <h2 className='text-3xl font-bold mb-4 text-center'>Subscriber List</h2>
             {error && <p className='text-red-500'>{error}</p>}
             {alertMessage && (
                 <Stack
