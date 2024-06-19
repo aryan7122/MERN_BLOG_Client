@@ -70,9 +70,7 @@ const Subscribers = () => {
                         <tr>
                             <th className='py-2 px-4 border-b'>No.</th>
                             <th className='py-2 px-4 border-b'>Avatar</th>
-                            <th className='py-2 px-4 border-b'>Name</th>
                             <th className='py-2 px-4 border-b'>Email</th>
-                            <th className='py-2 px-4 border-b'>Role</th>
                             <th className='py-2 px-4 border-b'>Actions</th>
                         </tr>
                     </thead>
