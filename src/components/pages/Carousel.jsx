@@ -6,6 +6,7 @@ const Carousel = ({ text, imageUrl }) => {
         <div className="banner-container ">
             <img src={imageUrl} alt="Banner" className="banner-image" />
             <div className="banner-text">{text}</div>
+          
         </div>
     );
 }
