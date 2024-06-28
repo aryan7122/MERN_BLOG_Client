@@ -69,7 +69,7 @@ Admins have full control over all blog posts, including the ability to update, d
 
 Users can register by providing their name, email, and role (User or Author). Admins can assign administrative roles to users as needed.
 
-![Login](https://github.com/aryan7122/MERN_BLOG_Client/blob/master/src/assets/images/git_rm/register.png)
+![Login](https://github.com/aryan7122/MERN_BLOG_Client/blob/master/src/assets/images/git_rm/login.png)
 
 Log in securely using email and password to access personalized features.
 
